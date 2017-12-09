@@ -32,17 +32,30 @@ public class MyShop {
                     Commodity commodity = new Commodity(id_add,name_add,price_add);
                     switch (commodityGroup.addCommodity(commodity)){
                         case 101:
-                        case 102:
-                            int position = commodityGroup.queryCommodityById(id_add);
-                            String name = commodityGroup.queryCommodityName(position);
+                            int position_id = commodityGroup.queryCommodityById(id_add);
+                            String name = commodityGroup.queryCommodityName(position_id);
                             System.out.print("\t"+id_add+" "+name+" is exist, do you want to add more? y/n ");
                             String answer_1 = input.next();
                             if(answer_1.equals("y")){
                                 System.out.print("\tInput the numer you want to add:");
                                 int num = input.nextInt();
-                                commodityGroup.addCommodity(position,num);
+                                commodityGroup.addCommodity(position_id,num);
                                 System.out.print("\tSuccess! "+id_add+" "+name+" now number:"+
-                                        commodityGroup.queryCommodityNum(position));
+                                        commodityGroup.queryCommodityNum(position_id));
+                                System.out.println();
+                            }
+                            break;
+                        case 102:
+                            int position_name = commodityGroup.queryCommodityByName(name_add);
+                            int id = commodityGroup.queryCommodityId(position_name);
+                            System.out.print("\t"+id_add+" "+id+" is exist, do you want to add more? y/n ");
+                            String answer_2 = input.next();
+                            if(answer_2.equals("y")){
+                                System.out.print("\tInput the numer you want to add:");
+                                int num = input.nextInt();
+                                commodityGroup.addCommodity(position_name,num);
+                                System.out.print("\tSuccess! "+id_add+" "+id+" now number:"+
+                                        commodityGroup.queryCommodityNum(position_name));
                                 System.out.println();
                             }
                             break;
