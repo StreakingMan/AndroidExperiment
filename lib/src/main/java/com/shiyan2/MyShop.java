@@ -131,7 +131,7 @@ public class MyShop {
                     String cont2 = input.next();
                     break;
                 case 3:
-                    System.out.println("\tInput the id or name:");
+                    System.out.print("\tInput the id or name:");
                     String type_delete = input.next();
                     boolean isID=false;
                     try{

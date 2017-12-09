@@ -51,8 +51,9 @@ public class CommodityGroup {
                 if (queryCommodityNum(position)<delNum){
                     isNum = false;
                 }else if(queryCommodityNum(position)==delNum){
+                    String name = commodityArrayList.get(position).getName();
                     commodityArrayList.remove(position);
-                    System.out.print("\tAll the " + queryCommodityName(position) + " have been deleted!");
+                    System.out.print("\tAll the "+name+" have been deleted!");
                     System.out.println();
                     isNum = true;
                 }else if(queryCommodityNum(position)>delNum){
