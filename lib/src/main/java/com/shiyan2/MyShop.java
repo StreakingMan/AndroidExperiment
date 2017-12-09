@@ -136,9 +136,9 @@ public class MyShop {
                     boolean isID=false;
                     try{
                         int id = Integer.parseInt(type_delete);
-                        isName=false;
+                        isID=true;
                     }catch (Exception ex){
-                        isName=true;
+                        isID=false;
                     }
                     if(!isID){
                         int position_delete = commodityGroup.queryCommodityByName(type_delete);
