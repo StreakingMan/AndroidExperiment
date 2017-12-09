@@ -91,9 +91,15 @@ public class MyShop {
                             String name_update = input.next();
                             System.out.print("\tPlease input new Price:");
                             float price_update = input.nextFloat();
-                            commodityGroup.updateCommodity(position_update,id_update,name_update,price_update);
-                            System.out.print("\tUpdate commodity successful!");
-                            System.out.println();
+                            if(commodityGroup.queryCommodityById(id_update)==-1
+                                    &&commodityGroup.queryCommodityByName(name_update)==-1){
+                                commodityGroup.updateCommodity(position_update,id_update,name_update,price_update);
+                                System.out.print("\tUpdate commodity successful!");
+                                System.out.println();
+                            }else {
+                                System.out.print("\tId or Name is exited!");
+                                System.out.println();
+                            }
                         }
                     }else if(!isName){
                         int id_forUpdate = Integer.parseInt(type_update);
@@ -109,9 +115,15 @@ public class MyShop {
                             String name_update = input.next();
                             System.out.print("\tPlease input new Price:");
                             float price_update = input.nextFloat();
-                            commodityGroup.updateCommodity(position_update,id_update,name_update,price_update);
-                            System.out.print("\tUpdate commodity successful!");
-                            System.out.println();
+                            if(commodityGroup.queryCommodityById(id_update)==-1
+                                    &&commodityGroup.queryCommodityByName(name_update)==-1){
+                                commodityGroup.updateCommodity(position_update,id_update,name_update,price_update);
+                                System.out.print("\tUpdate commodity successful!");
+                                System.out.println();
+                            }else {
+                                System.out.print("\tId or Name is exited!");
+                                System.out.println();
+                            }
                         }
                     }
                     System.out.println("\t*********************************************************");
