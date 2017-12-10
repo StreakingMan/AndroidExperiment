@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.maxstudio.androidexperiment.MainActivity">
+    tools:context="com.maxstudio.androidexperiment.HelloWorldActivity">
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -11,22 +12,19 @@
         android:layout_marginBottom="8dp"
         android:background="@color/primary_dark"
         android:titleTextColor="@color/primary_text_light" />
-    <Button
-        android:id="@+id/btn_shiyan4"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_centerInParent="true"
+        android:text="Hello World!"/>
+    <Button
+        android:id="@+id/btn_read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_below="@+id/toolbar"
-        android:text="实验四"
-        android:elevation="3dp"/>
-
-    <Button
-        android:id="@+id/btn_shiyan6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_shiyan4"
         android:layout_margin="8dp"
-        android:text="实验六"
+        android:text="已读"
         android:elevation="3dp"/>
 
 </RelativeLayout>

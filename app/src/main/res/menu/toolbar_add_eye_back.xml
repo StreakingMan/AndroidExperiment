@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/add"
+        android:icon="@drawable/ic_add"
+        android:title="已读"
+        app:showAsAction="always"
+        android:showAsAction="always"/>
+    <item
+        android:id="@+id/eye"
+        android:icon="@drawable/ic_eye"
+        android:title="已读"
+        app:showAsAction="always"
+        android:showAsAction="always"/>
+    <item
+        android:id="@+id/back"
+        android:icon="@drawable/ic_back"
+        android:title="返回"
+        app:showAsAction="ifRoom"
+        android:showAsAction="always"/>
+</menu>

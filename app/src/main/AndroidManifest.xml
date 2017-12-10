@@ -9,13 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:label="安卓移动开发实验">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HelloWorldActivity"
+            android:label="Hello World"/>
+        <activity android:name=".AddCommodityActivity"
+            android:label="添加商品"/>
+        <activity android:name=".CommodityDetailActivity"
+            android:label="商品详情"/>
     </application>
 
 </manifest>
