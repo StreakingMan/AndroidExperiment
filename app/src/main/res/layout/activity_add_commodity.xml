@@ -28,7 +28,7 @@
         android:layout_alignBaseline="@id/tv_cd_id"
         android:layout_marginStart="8dp"
         android:hint="请输入商品编号"
-        android:textSize="24sp"/>
+        android:textSize="24sp" />
     <TextView
         android:id="@+id/tv_cd_name"
         android:layout_width="wrap_content"

@@ -13,6 +13,7 @@ import android.widget.Button;
 public class MainActivity extends Activity {
     private Button btn_shiyan4;
     private Button btn_shiyan6;
+    private Button btn_shiyan10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class MainActivity extends Activity {
         setActionBar(toolbar);
         btn_shiyan4 = findViewById(R.id.btn_shiyan4);
         btn_shiyan6 = findViewById(R.id.btn_shiyan6);
+        btn_shiyan10 = findViewById(R.id.btn_shiyan10);
         btn_shiyan4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,6 +36,13 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,AddCommodityActivity.class);
                 startActivityForResult(intent,6);
+            }
+        });
+        btn_shiyan10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,ManagementActivity.class);
+                startActivityForResult(intent,10);
             }
         });
     }
@@ -52,6 +61,12 @@ public class MainActivity extends Activity {
                 if(resultCode==RESULT_OK){
                     btn_shiyan6.setTextColor(0XffFFCDD2);
                     btn_shiyan6.setText("实验六（已读）");
+                }
+                break;
+            case 10:
+                if(resultCode==RESULT_OK){
+                    btn_shiyan10.setTextColor(0XffFFCDD2);
+                    btn_shiyan10.setText("实验十（已读）");
                 }
                 break;
             default:

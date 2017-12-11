@@ -1,8 +1,10 @@
 package com.maxstudio.androidexperiment;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Toolbar;
+
+import java.io.File;
 
 public class AddCommodityActivity extends Activity implements View.OnClickListener{
     private EditText edt_id;
@@ -24,6 +28,8 @@ public class AddCommodityActivity extends Activity implements View.OnClickListen
     private Bundle bundle = new Bundle();
     private SharedPreferences.Editor editor;
     boolean isReadSuccess = false;
+    private MyDatabaseHelper dbHelper;
+    private File dataBaseFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +39,9 @@ public class AddCommodityActivity extends Activity implements View.OnClickListen
         setActionBar(toolbar);
         initView();
         initEvent();
+        dataBaseFile = new File("/data/data/com.maxstudio.androidexperiment/databases/ShopStore.db");
         editor = getSharedPreferences("Commodity",MODE_PRIVATE).edit();
+        dbHelper = new MyDatabaseHelper(this, "ShopStore.db", null, 1);
     }
 
     private void initView() {
@@ -78,6 +86,7 @@ public class AddCommodityActivity extends Activity implements View.OnClickListen
                 getEditTextData();
                 Intent intent_cd_detail = new Intent(AddCommodityActivity.this,CommodityDetailActivity.class);
                 if(isReadSuccess){
+                    dataPackage();
                     startActivity(intent_cd_detail);
                 }
                 break;
@@ -129,5 +138,20 @@ public class AddCommodityActivity extends Activity implements View.OnClickListen
         }else {
             Toast.makeText(AddCommodityActivity.this,"编号不能为空！",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    //数据打包储存
+    private void dataPackage(){
+        cd_id = edt_id.getText().toString();
+        cd_name = edt_name.getText().toString();
+        cd_price = Float.parseFloat(edt_price.getText().toString());
+        cd_num = Integer.parseInt(edt_num.getText().toString());
+        ContentValues values = new ContentValues();
+        values.put("id", cd_id);
+        values.put("name", cd_name);
+        values.put("price", cd_price);
+        values.put("num", cd_num);
+        ManagementActivity.addCommodity(values);
+        values.clear();
     }
 }

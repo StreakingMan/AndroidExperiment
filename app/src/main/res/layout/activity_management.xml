@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.maxstudio.androidexperiment.MainActivity">
+    tools:context="com.maxstudio.androidexperiment.ManagementActivity">
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -12,30 +13,40 @@
         android:background="@color/primary_dark"
         android:titleTextColor="@color/primary_text_light" />
     <Button
-        android:id="@+id/btn_shiyan4"
+        android:id="@+id/btn_cd_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_below="@+id/toolbar"
-        android:text="实验四"
+        android:text="添加商品"
         android:elevation="3dp"/>
 
     <Button
-        android:id="@+id/btn_shiyan6"
+        android:id="@+id/btn_cd_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_shiyan4"
+        android:layout_below="@+id/btn_cd_add"
         android:layout_margin="8dp"
-        android:text="实验六"
+        android:text="删除商品"
         android:elevation="3dp"/>
 
     <Button
-        android:id="@+id/btn_shiyan10"
+        android:id="@+id/btn_cd_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_shiyan6"
+        android:layout_below="@+id/btn_cd_delete"
         android:layout_margin="8dp"
-        android:text="实验十"
+        android:text="更新商品"
         android:elevation="3dp"/>
+
+    <Button
+        android:id="@+id/btn_cd_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_cd_update"
+        android:layout_margin="8dp"
+        android:text="查看商品"
+        android:elevation="3dp"/>
+
 
 </RelativeLayout>
