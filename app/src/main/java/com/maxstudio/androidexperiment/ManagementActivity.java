@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import java.util.ArrayList;
+
 public class ManagementActivity extends Activity implements View.OnClickListener{
     private static MyDatabaseHelper dbHelper;
     private static SQLiteDatabase db;
@@ -40,6 +42,8 @@ public class ManagementActivity extends Activity implements View.OnClickListener
         btn_cd_delete.setOnClickListener(this);
         btn_cd_update.setOnClickListener(this);
         btn_cd_query.setOnClickListener(this);
+
+        updateCommodity();
 
     }
 
@@ -77,6 +81,8 @@ public class ManagementActivity extends Activity implements View.OnClickListener
             case R.id.btn_cd_update:
                 break;
             case R.id.btn_cd_query:
+                Intent intent_query = new Intent(ManagementActivity.this,ShowCommodityListActivity.class);
+                startActivity(intent_query);
                 break;
             default:
                 break;
@@ -109,11 +115,115 @@ public class ManagementActivity extends Activity implements View.OnClickListener
             String name = cursor.getString(1);
             Float price = cursor.getFloat(2);
             int num = cursor.getInt(3);
-
+            commodity = new Commodity(id,name,price,num);
         }
 
         return commodity;
     }
 
     //删除商品
+    public static void deleteCommodity(String queryString){
+        db.delete("Commodity", "id=? or name=?", new String[]{queryString,queryString});
+    }
+
+    //更新商品
+    public static void updateCommodity(){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("id","hahahahah");
+        db.update("Commodity", contentValues, "price=?",new String[]{"11"});
+    }
+
+    //商品显示
+    public static ArrayList<Commodity> showCommodity(int mode){
+        ArrayList<Commodity> commodityArrayList = new ArrayList<>();
+        switch (mode){
+            //入库顺序
+            case 1:
+                commodityArrayList.clear();
+                Cursor cursor_1 = db.query("Commodity",null, null, null,
+                        null, null, null);
+                if(cursor_1.moveToFirst()){
+                    do{
+                        String id = cursor_1.getString(cursor_1.getColumnIndex("id"));
+                        String name = cursor_1.getString(cursor_1.getColumnIndex("name"));
+                        Float price = cursor_1.getFloat(cursor_1.getColumnIndex("price"));
+                        int num = cursor_1.getInt(cursor_1.getColumnIndex("num"));
+                        Commodity commodity = new Commodity(id,name,price,num);
+                        commodityArrayList.add(commodity);
+                    }while (cursor_1.moveToNext());
+                }
+                cursor_1.close();
+                break;
+            //数量降序
+            case 2:
+                commodityArrayList.clear();
+                Cursor cursor_2 = db.query("Commodity",null, null, null,
+                        null, null, "num desc");
+                if(cursor_2.moveToFirst()){
+                    do{
+                        String id = cursor_2.getString(cursor_2.getColumnIndex("id"));
+                        String name = cursor_2.getString(cursor_2.getColumnIndex("name"));
+                        Float price = cursor_2.getFloat(cursor_2.getColumnIndex("price"));
+                        int num = cursor_2.getInt(cursor_2.getColumnIndex("num"));
+                        Commodity commodity = new Commodity(id,name,price,num);
+                        commodityArrayList.add(commodity);
+                    }while (cursor_2.moveToNext());
+                }
+                cursor_2.close();
+                break;
+            //数量升序
+            case 3:
+                commodityArrayList.clear();
+                Cursor cursor_3 = db.query("Commodity",null, null, null,
+                        null, null, "num");
+                if(cursor_3.moveToFirst()){
+                    do{
+                        String id = cursor_3.getString(cursor_3.getColumnIndex("id"));
+                        String name = cursor_3.getString(cursor_3.getColumnIndex("name"));
+                        Float price = cursor_3.getFloat(cursor_3.getColumnIndex("price"));
+                        int num = cursor_3.getInt(cursor_3.getColumnIndex("num"));
+                        Commodity commodity = new Commodity(id,name,price,num);
+                        commodityArrayList.add(commodity);
+                    }while (cursor_3.moveToNext());
+                }
+                cursor_3.close();
+                break;
+            //价格降序
+            case 4:
+                commodityArrayList.clear();
+                Cursor cursor_4 = db.query("Commodity",null, null, null,
+                        null, null, "price desc");
+                if(cursor_4.moveToFirst()){
+                    do{
+                        String id = cursor_4.getString(cursor_4.getColumnIndex("id"));
+                        String name = cursor_4.getString(cursor_4.getColumnIndex("name"));
+                        Float price = cursor_4.getFloat(cursor_4.getColumnIndex("price"));
+                        int num = cursor_4.getInt(cursor_4.getColumnIndex("num"));
+                        Commodity commodity = new Commodity(id,name,price,num);
+                        commodityArrayList.add(commodity);
+                    }while (cursor_4.moveToNext());
+                }
+                cursor_4.close();
+                break;
+            //价格升序
+            case 5:
+                commodityArrayList.clear();
+                Cursor cursor_5 = db.query("Commodity",null, null, null,
+                        null, null, "price");
+                if(cursor_5.moveToFirst()){
+                    do{
+                        String id = cursor_5.getString(cursor_5.getColumnIndex("id"));
+                        String name = cursor_5.getString(cursor_5.getColumnIndex("name"));
+                        Float price = cursor_5.getFloat(cursor_5.getColumnIndex("price"));
+                        int num = cursor_5.getInt(cursor_5.getColumnIndex("num"));
+                        Commodity commodity = new Commodity(id,name,price,num);
+                        commodityArrayList.add(commodity);
+                    }while (cursor_5.moveToNext());
+                }
+                cursor_5.close();
+                break;
+            default:
+        }
+        return commodityArrayList;
+    }
 }

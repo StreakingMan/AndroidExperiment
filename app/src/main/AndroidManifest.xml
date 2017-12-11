@@ -27,8 +27,11 @@
         <activity
             android:name=".CommodityDetailActivity"
             android:label="商品详情" />
-        <activity android:name=".ManagementActivity"
-            android:label="商品管理页面"></activity>
+        <activity
+            android:name=".ManagementActivity"
+            android:label="商品管理页面" />
+        <activity android:name=".ShowCommodityListActivity"
+            android:label="商品列表页"></activity>
     </application>
 
 </manifest>
