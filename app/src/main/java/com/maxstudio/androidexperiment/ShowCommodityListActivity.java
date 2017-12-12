@@ -2,11 +2,13 @@ package com.maxstudio.androidexperiment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -20,6 +22,8 @@ public class ShowCommodityListActivity extends Activity implements SearchView.On
     private ArrayList<Commodity> tempList = new ArrayList<>();
     private ListView lv_commodity;
     private CommodityListAdapter cdAdapter;
+    private SharedPreferences.Editor editor;
+    boolean isSearching = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,31 @@ public class ShowCommodityListActivity extends Activity implements SearchView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setActionBar(toolbar);
         initList();
+        editor = getSharedPreferences("Commodity",MODE_PRIVATE).edit();
+        //list 点击进入详情
+        lv_commodity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //判断是否搜索列表
+                if(isSearching){
+                    editor.putString("cd_id",tempList.get(i).getId());
+                    editor.putString("cd_name",tempList.get(i).getName());
+                    editor.putFloat("cd_price",tempList.get(i).getPrice());
+                    editor.putInt("cd_num",tempList.get(i).getNum());
+                    editor.apply();
+                    Intent intent = new Intent(ShowCommodityListActivity.this,CommodityDetailActivity.class);
+                    startActivity(intent);
+                }else {
+                    editor.putString("cd_id",cdList.get(i).getId());
+                    editor.putString("cd_name",cdList.get(i).getName());
+                    editor.putFloat("cd_price",cdList.get(i).getPrice());
+                    editor.putInt("cd_num",cdList.get(i).getNum());
+                    editor.apply();
+                    Intent intent = new Intent(ShowCommodityListActivity.this,CommodityDetailActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
     }
 
@@ -54,6 +83,7 @@ public class ShowCommodityListActivity extends Activity implements SearchView.On
                 @Override
                 public boolean onClose() {
                     initList();
+                    isSearching = false;
                     return false;
                 }
             });
@@ -103,23 +133,28 @@ public class ShowCommodityListActivity extends Activity implements SearchView.On
     @Override
     public boolean onQueryTextSubmit(String query) {
         searchView.clearFocus();
+        isSearching = false;
         return true;
     }
 
-
+    //搜索动态刷新
     @Override
     public boolean onQueryTextChange(String newText) {
-        //tempList.clear();
+        int length = newText.length();
+        isSearching = true;
+        tempList.clear();
         for(int i=0;i<cdList.size();i++){
-            if(!cdList.get(i).getId().equals(newText)&&
-                    !cdList.get(i).getName().equals(newText)){
-                tempList.add(cdList.get(i));
-            }
-        }
-        for(int j=0;j<tempList.size();j++){
-            if(!tempList.get(j).getId().equals(newText)&&
-                    !tempList.get(j).getName().equals(newText)){
-                tempList.remove(j);
+            try{
+                if(cdList.get(i).getId().substring(0,length).equals(newText)){
+                    tempList.add(cdList.get(i));
+                }else {
+                    try{if(cdList.get(i).getName().substring(0,length).equals(newText)){
+                        tempList.add(cdList.get(i));
+                    }
+                    }catch (Exception ex2){
+                    }
+                }
+            }catch (Exception ex){
             }
         }
         cdAdapter = new CommodityListAdapter(ShowCommodityListActivity.this,

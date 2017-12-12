@@ -86,8 +86,18 @@ public class AddCommodityActivity extends Activity implements View.OnClickListen
                 getEditTextData();
                 Intent intent_cd_detail = new Intent(AddCommodityActivity.this,CommodityDetailActivity.class);
                 if(isReadSuccess){
-                    dataPackage();
-                    startActivity(intent_cd_detail);
+                    //查重
+                    if(!ManagementActivity.isExist(edt_id.getText().toString())){
+                        if(!ManagementActivity.isExist(edt_name.getText().toString())){
+                            dataPackage();
+                            Toast.makeText(AddCommodityActivity.this,"商品添加成功",Toast.LENGTH_SHORT).show();
+                            startActivity(intent_cd_detail);
+                        }else {
+                            Toast.makeText(AddCommodityActivity.this,"商品名称已存在",Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        Toast.makeText(AddCommodityActivity.this,"商品id已存在",Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
             case R.id.eye:
