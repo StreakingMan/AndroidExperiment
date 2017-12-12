@@ -43,8 +43,6 @@ public class ManagementActivity extends Activity implements View.OnClickListener
         btn_cd_update.setOnClickListener(this);
         btn_cd_query.setOnClickListener(this);
 
-        updateCommodity();
-
     }
 
     @Override
@@ -77,8 +75,12 @@ public class ManagementActivity extends Activity implements View.OnClickListener
                 startActivity(intent_add);
                 break;
             case R.id.btn_cd_delete:
+                Intent intent_delete = new Intent(ManagementActivity.this,DeleteCommodityActivity.class);
+                startActivity(intent_delete);
                 break;
             case R.id.btn_cd_update:
+                Intent intent_update = new Intent(ManagementActivity.this,UpdateCommodityActivity.class);
+                startActivity(intent_update);
                 break;
             case R.id.btn_cd_query:
                 Intent intent_query = new Intent(ManagementActivity.this,ShowCommodityListActivity.class);
@@ -126,11 +128,9 @@ public class ManagementActivity extends Activity implements View.OnClickListener
         db.delete("Commodity", "id=? or name=?", new String[]{queryString,queryString});
     }
 
-    //更新商品
-    public static void updateCommodity(){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("id","hahahahah");
-        db.update("Commodity", contentValues, "price=?",new String[]{"11"});
+    //更新商品(根据id)
+    public static void updateCommodity(String id, ContentValues values){
+        db.update("Commodity", values, "id=?",new String[]{id});
     }
 
     //商品显示

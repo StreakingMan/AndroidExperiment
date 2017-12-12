@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,44 +18,49 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ShowCommodityListActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
+public class DeleteCommodityActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
     private SearchView searchView;
     private ArrayList<Commodity> cdList = new ArrayList<>();
     private ArrayList<Commodity> tempList = new ArrayList<>();
     private ListView lv_commodity;
     private CommodityListAdapter cdAdapter;
-    private SharedPreferences.Editor editor;
     boolean isSearching = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_commodity_list);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_delete_commodity);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initList();
-        editor = getSharedPreferences("Commodity",MODE_PRIVATE).edit();
-        //list 点击进入详情
+        //list点击后根据id删除商品
         lv_commodity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                final int position = i;
                 //判断是否搜索列表
                 if(isSearching){
-                    editor.putString("cd_id",tempList.get(i).getId());
-                    editor.putString("cd_name",tempList.get(i).getName());
-                    editor.putFloat("cd_price",tempList.get(i).getPrice());
-                    editor.putInt("cd_num",tempList.get(i).getNum());
-                    editor.apply();
-                    Intent intent = new Intent(ShowCommodityListActivity.this,CommodityDetailActivity.class);
-                    startActivity(intent);
+                    Snackbar.make(lv_commodity,"取消",Snackbar.LENGTH_SHORT)
+                            .setAction("删除商品", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    ManagementActivity.deleteCommodity(tempList.get(position).getId());
+                                    Toast.makeText(DeleteCommodityActivity.this,"删除成功",Toast.LENGTH_LONG).show();
+                                    initList();
+                                }
+                            })
+                            .show();
                 }else {
-                    editor.putString("cd_id",cdList.get(i).getId());
-                    editor.putString("cd_name",cdList.get(i).getName());
-                    editor.putFloat("cd_price",cdList.get(i).getPrice());
-                    editor.putInt("cd_num",cdList.get(i).getNum());
-                    editor.apply();
-                    Intent intent = new Intent(ShowCommodityListActivity.this,CommodityDetailActivity.class);
-                    startActivity(intent);
+                    Snackbar.make(lv_commodity,"取消",Snackbar.LENGTH_SHORT)
+                            .setAction("删除商品", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    ManagementActivity.deleteCommodity(cdList.get(position).getId());
+                                    Toast.makeText(DeleteCommodityActivity.this,"删除成功",Toast.LENGTH_LONG).show();
+                                    initList();
+                                }
+                            })
+                            .show();
                 }
             }
         });
@@ -66,7 +72,7 @@ public class ShowCommodityListActivity extends AppCompatActivity implements Sear
         cdList.clear();
         cdList = ManagementActivity.showCommodity(1);
         lv_commodity = findViewById(R.id.lv_cd_list);
-        cdAdapter = new CommodityListAdapter(ShowCommodityListActivity.this,
+        cdAdapter = new CommodityListAdapter(DeleteCommodityActivity.this,
                 R.layout.item_commodity,cdList);
         lv_commodity.setAdapter(cdAdapter);
     }
@@ -126,7 +132,7 @@ public class ShowCommodityListActivity extends AppCompatActivity implements Sear
     private void notifyListView(int mode){
         cdList.clear();
         cdList = ManagementActivity.showCommodity(mode);
-        cdAdapter = new CommodityListAdapter(ShowCommodityListActivity.this,
+        cdAdapter = new CommodityListAdapter(DeleteCommodityActivity.this,
                 R.layout.item_commodity,cdList);
         lv_commodity.setAdapter(cdAdapter);
     }
@@ -158,7 +164,7 @@ public class ShowCommodityListActivity extends AppCompatActivity implements Sear
             }catch (Exception ex){
             }
         }
-        cdAdapter = new CommodityListAdapter(ShowCommodityListActivity.this,
+        cdAdapter = new CommodityListAdapter(DeleteCommodityActivity.this,
                 R.layout.item_commodity,tempList);
         lv_commodity.setAdapter(cdAdapter);
         return true;

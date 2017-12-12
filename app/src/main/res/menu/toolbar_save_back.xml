@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/save"
+        android:icon="@drawable/ic_save"
+        android:title="保存"
+        app:showAsAction="always"
+        android:showAsAction="always"/>
+    <item
+        android:id="@+id/back"
+        android:icon="@drawable/ic_back"
+        android:title="返回"
+        app:showAsAction="ifRoom"
+        android:showAsAction="always"/>
+</menu>

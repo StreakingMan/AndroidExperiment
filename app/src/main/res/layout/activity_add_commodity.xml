@@ -28,7 +28,8 @@
         android:layout_alignBaseline="@id/tv_cd_id"
         android:layout_marginStart="8dp"
         android:hint="请输入商品编号"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/primary_text"/>
     <TextView
         android:id="@+id/tv_cd_name"
         android:layout_width="wrap_content"
@@ -46,7 +47,8 @@
         android:layout_alignBaseline="@id/tv_cd_name"
         android:layout_marginStart="8dp"
         android:hint="请输入商品名称"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/primary_text"/>
     <TextView
         android:id="@+id/tv_cd_price"
         android:layout_width="wrap_content"
@@ -65,7 +67,8 @@
         android:layout_marginStart="8dp"
         android:hint="请输入商品价格"
         android:textSize="24sp"
-        android:inputType="number|numberDecimal"/>
+        android:inputType="number|numberDecimal"
+        android:textColor="@color/primary_text"/>
     <TextView
         android:id="@+id/tv_cd_num"
         android:layout_width="wrap_content"
@@ -84,6 +87,7 @@
         android:layout_marginStart="8dp"
         android:hint="请输入商品数量"
         android:textSize="24sp"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:textColor="@color/primary_text"/>
 
 </RelativeLayout>

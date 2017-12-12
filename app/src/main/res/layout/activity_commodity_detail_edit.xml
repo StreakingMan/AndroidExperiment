@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.maxstudio.androidexperiment.CommodityDetailActivity">
-    <android.support.v7.widget.Toolbar
+    tools:context="com.maxstudio.androidexperiment.CommodityDetailEditActivity">
+    <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginBottom="8dp"
         android:background="@color/primary_dark"
-        android:titleTextColor="@color/primary_text_light"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        android:titleTextColor="@color/primary_text_light" />
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,14 +22,15 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="@color/primary">
-            <TextView
-                android:id="@+id/tv_cd_name"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/edt_cd_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_margin="8dp"
-                android:text="name"
+                android:hint="请输入商品名称"
+                android:textColorHint="@color/primary_light"
                 android:textSize="32sp"
                 android:textColor="@color/primary_text_light"/>
             <TextView
@@ -39,11 +38,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/tv_cd_name"
+                android:layout_below="@+id/edt_cd_name"
                 android:layout_margin="8dp"
                 android:text="编号："
                 android:textSize="24sp"
-                android:textColor="@color/primary_light"/>
+                android:textColor="@color/primary_text_light"/>
+            <EditText
+                android:id="@+id/edt_cd_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_cd_id"
+                android:layout_toEndOf="@+id/tv_cd_id"
+                android:hint="请输入商品编号"
+                android:textColorHint="@color/primary_light"
+                android:textSize="24sp"
+                android:textColor="@color/primary_text_light"/>
             <TextView
                 android:id="@+id/tv_cd_price"
                 android:layout_width="wrap_content"
@@ -53,7 +62,17 @@
                 android:layout_margin="8dp"
                 android:text="价格："
                 android:textSize="24sp"
-                android:textColor="@color/primary_light"/>
+                android:textColor="@color/primary_text_light"/>
+            <EditText
+                android:id="@+id/edt_cd_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_cd_price"
+                android:layout_toEndOf="@+id/tv_cd_price"
+                android:hint="请输入商品价格"
+                android:textColorHint="@color/primary_light"
+                android:textSize="24sp"
+                android:textColor="@color/primary_text_light"/>
             <TextView
                 android:id="@+id/tv_cd_num"
                 android:layout_width="wrap_content"
@@ -63,7 +82,19 @@
                 android:layout_margin="8dp"
                 android:text="数量："
                 android:textSize="24sp"
-                android:textColor="@color/primary_light"/>
+                android:textColor="@color/primary_text_light"
+                android:inputType="numberDecimal"/>
+            <EditText
+                android:id="@+id/edt_cd_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_cd_num"
+                android:layout_toEndOf="@+id/tv_cd_num"
+                android:hint="请输入商品数量"
+                android:textColorHint="@color/primary_light"
+                android:textSize="24sp"
+                android:inputType="number"
+                android:textColor="@color/primary_text_light"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

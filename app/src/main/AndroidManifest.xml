@@ -26,12 +26,22 @@
             android:label="添加商品" />
         <activity
             android:name=".CommodityDetailActivity"
-            android:label="商品详情" />
+            android:label="商品详情"
+            android:theme="@style/AppThemeCompat"/>
         <activity
             android:name=".ManagementActivity"
             android:label="商品管理页面" />
         <activity android:name=".ShowCommodityListActivity"
-            android:label="商品列表页"></activity>
+            android:label="查询商品"
+            android:theme="@style/AppThemeCompat"/>
+        <activity android:name=".DeleteCommodityActivity"
+            android:label="删除商品"
+            android:theme="@style/AppThemeCompat"/>
+        <activity android:name=".UpdateCommodityActivity"
+            android:label="修改商品"
+            android:theme="@style/AppThemeCompat"/>
+        <activity android:name=".CommodityDetailEditActivity"
+            android:label="编辑修改内容" />
     </application>
 
 </manifest>

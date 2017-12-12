@@ -85,6 +85,7 @@ public class AddCommodityActivity extends Activity implements View.OnClickListen
             case R.id.add:
                 getEditTextData();
                 Intent intent_cd_detail = new Intent(AddCommodityActivity.this,CommodityDetailActivity.class);
+                intent_cd_detail.putExtra("fromAdd",true);
                 if(isReadSuccess){
                     //查重
                     if(!ManagementActivity.isExist(edt_id.getText().toString())){
