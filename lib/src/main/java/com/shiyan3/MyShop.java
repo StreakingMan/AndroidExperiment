@@ -89,12 +89,12 @@ public class MyShop {
 
             //商品列表
             JPanel jPanel4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            JPanel jPanel5 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+            JPanel jPanel5 = new JPanel(new GridLayout(1,5));
             JButton def = new JButton("Default order");
-            JButton num_desc = new JButton("Num descending order");
-            JButton num_asc = new JButton("Num ascending order");
-            JButton price_desc = new JButton("Price descending order");
-            JButton price_asc = new JButton("Price ascending order");
+            JButton num_desc = new JButton("Num-desc order");
+            JButton num_asc = new JButton("Num-asc order");
+            JButton price_desc = new JButton("Price-desc order");
+            JButton price_asc = new JButton("Price-asc order");
             jPanel5.add(def);
             jPanel5.add(num_desc);
             jPanel5.add(num_asc);
@@ -104,7 +104,7 @@ public class MyShop {
             String[] title = { "Id", "Name", "Price", "Num",};
             tableModel = new DefaultTableModel(commodityList,title);
             jTable = new JTable(tableModel);
-            jTable.setPreferredScrollableViewportSize(new Dimension(550, 400));
+            jTable.setPreferredScrollableViewportSize(new Dimension(550, 300));
             JScrollPane jScrollPane = new JScrollPane(jTable);
             jPanel4.add(jPanel5);
             jPanel4.add(jScrollPane);
@@ -112,7 +112,7 @@ public class MyShop {
 
             //设置窗体属性
             this.setTitle("Easy Shop Management System");
-            this.setSize(800,600);
+            this.setSize(650,500);
             this.setLocation(600,300);
             this.setVisible(true);
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -193,12 +193,12 @@ public class MyShop {
                     int position_name = commodityGroup.queryCommodityByName(tf_name.getText().toString());
                     if(position_id==-1){
                         JOptionPane.showConfirmDialog(null,
-                                "Commodity is not exist, please select the commodity",
+                                "Please select the commodity",
                                 "Delete Failed", JOptionPane.YES_OPTION);
                     }else {
                         if(position_name==-1){
                             JOptionPane.showConfirmDialog(null,
-                                    "Commodity is not exist, please select the commodity",
+                                    "Please select the commodity",
                                     "Delete Failed", JOptionPane.YES_OPTION);
                         }else {
                             commodityGroup.deleteCommodity(position_id);
@@ -270,7 +270,7 @@ public class MyShop {
             def.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                    orderList(201);
+                    showList();
                 }
             });
             num_desc.addActionListener(new ActionListener() {
