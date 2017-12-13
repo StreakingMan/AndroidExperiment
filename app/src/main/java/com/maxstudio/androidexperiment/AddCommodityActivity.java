@@ -88,16 +88,20 @@ public class AddCommodityActivity extends Activity implements View.OnClickListen
                 intent_cd_detail.putExtra("fromAdd",true);
                 if(isReadSuccess){
                     //查重
-                    if(!ManagementActivity.isExist(edt_id.getText().toString())){
-                        if(!ManagementActivity.isExist(edt_name.getText().toString())){
-                            dataPackage();
-                            Toast.makeText(AddCommodityActivity.this,"商品添加成功",Toast.LENGTH_SHORT).show();
-                            startActivity(intent_cd_detail);
+                    try {
+                        if(!ManagementActivity.isExist(edt_id.getText().toString())){
+                            if(!ManagementActivity.isExist(edt_name.getText().toString())){
+                                dataPackage();
+                                Toast.makeText(AddCommodityActivity.this,"商品添加成功",Toast.LENGTH_SHORT).show();
+                                startActivity(intent_cd_detail);
+                            }else {
+                                Toast.makeText(AddCommodityActivity.this,"商品名称已存在",Toast.LENGTH_SHORT).show();
+                            }
                         }else {
-                            Toast.makeText(AddCommodityActivity.this,"商品名称已存在",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddCommodityActivity.this,"商品id已存在",Toast.LENGTH_SHORT).show();
                         }
-                    }else {
-                        Toast.makeText(AddCommodityActivity.this,"商品id已存在",Toast.LENGTH_SHORT).show();
+                    }catch (Exception ex){
+                        Toast.makeText(AddCommodityActivity.this,"请先打开实验十",Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
